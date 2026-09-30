@@ -11,10 +11,37 @@ performance expectation).
 Installers for **macOS** (Apple Silicon and Intel), **Windows** and **Linux** are attached to each
 [release](../../releases/latest).
 
+Latest version: [![latest release](https://img.shields.io/github/v/release/Imag-In/Pholio?label=Pholio&color=blue)](../../releases/latest)
+
+| Platform | Download |
+|---|---|
+| macOS — Apple Silicon (M1 and later) | [pholio-macos-arm64.dmg](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-macos-arm64.dmg) |
+| macOS — Intel | [pholio-macos-x64.dmg](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-macos-x64.dmg) |
+| Windows 64-bit | [pholio-windows-x64.msi](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-windows-x64.msi) |
+| Linux 64-bit (Debian, Ubuntu, …) | [pholio-linux-amd64.deb](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-linux-amd64.deb) |
+
+Older versions, and a checksum for every installer, are on the [releases page](../../releases).
+
 The installers are not signed yet, so your system may warn you the first time you open Pholio:
 
-- **macOS** — right-click the app, choose *Open*, then confirm.
+- **macOS** — drag Pholio to *Applications* and open it once; when macOS refuses, go to *System Settings →
+  Privacy & Security* and click *Open Anyway* next to the message about Pholio. On older macOS versions,
+  right-clicking the app and choosing *Open* is enough.
+
+  Or, from the Terminal, lift the download quarantine once after installing — this only affects Pholio:
+
+  ```bash
+  xattr -dr com.apple.quarantine /Applications/Pholio.app
+  ```
+
 - **Windows** — on the "Windows protected your PC" screen, click *More info*, then *Run anyway*.
+
+  Or unblock the downloaded installer before running it — right-click it, *Properties*, tick *Unblock* — or
+  from PowerShell (this only affects that file):
+
+  ```powershell
+  Unblock-File -Path "$env:USERPROFILE\Downloads\pholio-windows-x64.msi"
+  ```
 
 ## Main features
 

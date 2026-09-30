@@ -88,8 +88,17 @@ jobs:
           OUT_DIR: dist
         run: bash "${{ matrix.script }}"
 
+      # Each installer is attached twice: under its versioned name (pholio-2026.9.1-macos-arm64.dmg), and under
+      # a version-less one (pholio-macos-arm64.dmg) that the README links to through
+      # releases/latest/download/<name> — a URL GitHub keeps pointing at the newest release, so the download
+      # table never needs editing.
       - name: Attach to the release
         run: |
-          gh release upload "v${{ steps.version.outputs.version }}" dist/* \
+          version="${{ steps.version.outputs.version }}"
+          for installer in dist/*; do
+            case "${installer}" in *.sha256) continue ;; esac
+            cp "${installer}" "${installer/-${version}/}"
+          done
+          gh release upload "v${version}" dist/* \
             --repo "${GITHUB_REPOSITORY}" \
             --clobber
