@@ -4,6 +4,7 @@ set -euo pipefail
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../common.sh"
 
 prepare_input
+strip_onnxruntime_natives linux-x64
 build_runtime
 common_jpackage_args "${APP_VERSION}"
 

@@ -4,12 +4,13 @@ set -euo pipefail
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../common.sh"
 
 case "$(uname -m)" in
-    arm64)  ARCH="arm64" ;;
-    x86_64) ARCH="x64" ;;
+    arm64)  ARCH="arm64"; ORT_NATIVE="osx-aarch64" ;;
+    x86_64) ARCH="x64";   ORT_NATIVE="osx-x64" ;;
     *)      echo "Unsupported macOS architecture: $(uname -m)" >&2; exit 1 ;;
 esac
 
 prepare_input
+strip_onnxruntime_natives "${ORT_NATIVE}"
 build_runtime
 common_jpackage_args "${APP_VERSION}"
 

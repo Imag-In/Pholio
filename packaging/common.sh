@@ -58,6 +58,33 @@ prepare_input() {
     find "${INPUT_DIR}/lib" -maxdepth 1 -name 'javafx-*.jar' -print -delete
 }
 
+# ONNX Runtime ships one jar with the native libraries of every platform (~590 MB unpacked, win-x64 alone
+# 351 MB). Keeps only $1 — linux-x64, win-x64, osx-aarch64 or osx-x64, the directory names under
+# ai/onnxruntime/native/ — and rebuilds the jar in place. Uses only the JDK's own jar tool: Git Bash on
+# Windows has no zip.
+strip_onnxruntime_natives() {
+    local keep="$1" jar work
+    jar=$(find "${INPUT_DIR}/lib" -maxdepth 1 -name 'onnxruntime-*.jar' | head -n 1)
+    if [ -z "${jar}" ]; then
+        log "No onnxruntime jar to strip"
+        return 0
+    fi
+    jar="$(cd "$(dirname "${jar}")" && pwd)/$(basename "${jar}")"
+    work="$(pwd)/${BUILD_DIR}/onnxruntime"
+    rm -rf "${work}" && mkdir -p "${work}"
+    (cd "${work}" && "${JAVA_BIN}/jar" xf "${jar}")
+    [ -d "${work}/ai/onnxruntime/native/${keep}" ] || { echo "ONNX Runtime has no native/${keep}" >&2; exit 1; }
+    local dir
+    for dir in "${work}"/ai/onnxruntime/native/*/; do
+        [ "$(basename "${dir}")" = "${keep}" ] || rm -rf "${dir}"
+    done
+    mv "${work}/META-INF/MANIFEST.MF" "${BUILD_DIR}/onnxruntime.MF"
+    rm -f "${jar}"
+    "${JAVA_BIN}/jar" --create --file "${jar}" --manifest "${BUILD_DIR}/onnxruntime.MF" -C "${work}" .
+    rm -rf "${work}" "${BUILD_DIR}/onnxruntime.MF"
+    log "ONNX Runtime natives reduced to ${keep}: $(du -h "${jar}" | cut -f1)"
+}
+
 build_runtime() {
     log "Detecting required modules"
     local detected=""

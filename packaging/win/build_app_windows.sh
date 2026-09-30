@@ -10,6 +10,7 @@ IFS=. read -r YEAR MONTH BUILD <<<"${APP_VERSION}"
 MSI_VERSION="$((YEAR - 2000)).${MONTH}.${BUILD}"
 
 prepare_input
+strip_onnxruntime_natives win-x64
 build_runtime
 common_jpackage_args "${MSI_VERSION}"
 
