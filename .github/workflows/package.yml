@@ -4,7 +4,7 @@
 # creates it, with pholio-<version>.jar as an asset — or by hand for an existing release, to rebuild its
 # installers (Actions > package > Run workflow > version, e.g. 2026.9.1).
 #
-# Each OS job: JDK 26 with JavaFX (Zulu jdk+fx) -> the release jar -> `java -Djarmode=tools -jar … extract`
+# Each OS job: JDK 27 with JavaFX (Zulu jdk+fx) -> the release jar -> `java -Djarmode=tools -jar … extract`
 # -> packaging/<os>/build_app_<os>.sh (jlink'ed runtime + jpackage) -> installer and .sha256 uploaded to
 # the release, replacing any previous upload of the same name.
 name: package
@@ -64,11 +64,11 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 26 with JavaFX
+      - name: Set up JDK 27 with JavaFX
         uses: actions/setup-java@v4
         with:
           distribution: zulu
-          java-version: '26'
+          java-version: '27'
           java-package: jdk+fx
 
       - name: Download the release jar

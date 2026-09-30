@@ -6,7 +6,7 @@
 #   APP_DIR       the jar extracted by `java -Djarmode=tools -jar pholio-<version>.jar extract`:
 #                 pholio-<version>.jar (thin, Main-Class + Class-Path in its manifest) next to lib/
 #   OUT_DIR       where the finished installer and its .sha256 go
-#   JAVA_HOME     a JDK 26 that bundles JavaFX, jmods included (actions/setup-java, zulu, jdk+fx)
+#   JAVA_HOME     a JDK 27 that bundles JavaFX, jmods included (actions/setup-java, zulu, jdk+fx)
 #
 # Produces build/input (the application jars jpackage copies into the app) and build/runtime (a jlink'ed
 # Java runtime holding only the modules the application needs), then leaves jpackage to the OS script.
@@ -89,7 +89,7 @@ build_runtime() {
     log "Detecting required modules"
     local detected=""
     if detected=$("${JAVA_BIN}/jdeps" \
-            --multi-release 26 \
+            --multi-release 27 \
             --ignore-missing-deps \
             --print-module-deps \
             --class-path "${INPUT_DIR}/lib/*" \
@@ -120,10 +120,11 @@ jdk.management,javafx.base,javafx.graphics,javafx.controls,javafx.fxml,javafx.sw
 }
 
 # jpackage options every OS shares; the OS script adds its --type, icon and platform switches.
+# JPACKAGE_IMAGE_ARGS holds only what describes the application image itself, for an OS script that builds
+# the image first and the installer from it in a second run (macOS); JPACKAGE_ARGS is the one-run set.
 common_jpackage_args() {
     local version="$1"
-    JPACKAGE_ARGS=(
-        --dest "${BUILD_DIR}/installer"
+    JPACKAGE_IMAGE_ARGS=(
         --input "${INPUT_DIR}"
         --main-jar "${MAIN_JAR}"
         --runtime-image "${RUNTIME_DIR}"
@@ -132,7 +133,6 @@ common_jpackage_args() {
         --vendor "${APP_VENDOR}"
         --description "${APP_DESCRIPTION}"
         --copyright "${APP_COPYRIGHT}"
-        --license-file "${PACKAGING_DIR}/../LICENSE.txt"
         # Pholio is headless by default and opens its window only with --ui. jpackage bakes these in as the
         # launcher's default arguments, used whenever it gets none — a double-click, the Dock, the Start menu.
         # Any argument given explicitly replaces them, so the installed launcher still runs commands
@@ -141,8 +141,13 @@ common_jpackage_args() {
     )
     local option
     for option in "${JAVA_OPTIONS[@]}"; do
-        JPACKAGE_ARGS+=(--java-options "${option}")
+        JPACKAGE_IMAGE_ARGS+=(--java-options "${option}")
     done
+    JPACKAGE_ARGS=(
+        "${JPACKAGE_IMAGE_ARGS[@]}"
+        --dest "${BUILD_DIR}/installer"
+        --license-file "${PACKAGING_DIR}/../LICENSE.txt"
+    )
 }
 
 # Moves the one installer jpackage produced (matching $1) to OUT_DIR as $2, with its .sha256 next to it.
