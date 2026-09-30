@@ -103,3 +103,8 @@ The sources will soon be available on a self-hosted Gitea instance — a link wi
 ## Release notes
 
 Every release comes with its notes, also kept in [`release_note/`](release_note/).
+
+## Credits
+
+Pholio is built on many open source libraries, open recognition models and open map data: see
+[CREDITS.md](CREDITS.md) — also available in the application, from the `?` in Settings.

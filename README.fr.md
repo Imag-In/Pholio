@@ -112,3 +112,9 @@ Les sources seront bientôt disponibles sur une instance Gitea auto-hébergée �
 ## Notes de version
 
 Chaque release est accompagnée de ses notes, également conservées dans [`release_note/`](release_note/).
+
+## Crédits
+
+Pholio repose sur de nombreuses bibliothèques open source, des modèles de reconnaissance et des données
+cartographiques ouverts : voir [CREDITS.md](CREDITS.md) — également consultable dans l'application, via le
+`?` des Paramètres.
