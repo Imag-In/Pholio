@@ -1,5 +1,7 @@
 # Pholio
 
+**English** · [Français](README.fr.md)
+
 **Your photos, on your drives, under your control.**
 
 Pholio is a desktop application to organise, browse and search large photo and video collections — tens of
