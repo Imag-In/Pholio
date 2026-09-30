@@ -1,0 +1,7 @@
+# Shell scripts run on Linux/macOS runners and under Git Bash on Windows: LF everywhere.
+*.sh    text eol=lf
+*.yml   text eol=lf
+*.md    text eol=lf
+*.icns  binary
+*.ico   binary
+*.png   binary

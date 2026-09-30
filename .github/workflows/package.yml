@@ -1,0 +1,95 @@
+# Builds the native installers of a release and attaches them to it.
+#
+# Runs on its own whenever a release is published — `./mvnw -Prelease validate` in the source repository
+# creates it, with pholio-<version>.jar as an asset — or by hand for an existing release, to rebuild its
+# installers (Actions > package > Run workflow > version, e.g. 2026.9.1).
+#
+# Each OS job: JDK 26 with JavaFX (Zulu jdk+fx) -> the release jar -> `java -Djarmode=tools -jar … extract`
+# -> packaging/<os>/build_app_<os>.sh (jlink'ed runtime + jpackage) -> installer and .sha256 uploaded to
+# the release, replacing any previous upload of the same name.
+name: package
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to (re)package, without the leading v — e.g. 2026.9.1'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: package-${{ github.event.release.tag_name || inputs.version }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: linux-x64
+            runner: ubuntu-latest
+            script: packaging/linux/build_app_linux.sh
+          - label: windows-x64
+            runner: windows-2022        # ships the WiX Toolset jpackage needs for .msi
+            script: packaging/win/build_app_windows.sh
+          - label: macos-arm64
+            runner: macos-15
+            script: packaging/mac/build_app_macos.sh
+          - label: macos-x64
+            runner: macos-15-intel
+            script: packaging/mac/build_app_macos.sh
+    defaults:
+      run:
+        shell: bash
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Resolve version
+        id: version
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          version="${tag#v}"
+          [ -n "${version}" ] || version="${{ inputs.version }}"
+          version="${version#v}"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "Packaging Pholio ${version}"
+
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 26 with JavaFX
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '26'
+          java-package: jdk+fx
+
+      - name: Download the release jar
+        run: |
+          gh release download "v${{ steps.version.outputs.version }}" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --pattern "pholio-${{ steps.version.outputs.version }}.jar" \
+            --clobber
+
+      - name: Extract the jar
+        run: java -Djarmode=tools -jar "pholio-${{ steps.version.outputs.version }}.jar" extract
+
+      - name: Build the installer
+        env:
+          APP_VERSION: ${{ steps.version.outputs.version }}
+          APP_DIR: pholio-${{ steps.version.outputs.version }}
+          OUT_DIR: dist
+        run: bash "${{ matrix.script }}"
+
+      - name: Attach to the release
+        run: |
+          gh release upload "v${{ steps.version.outputs.version }}" dist/* \
+            --repo "${GITHUB_REPOSITORY}" \
+            --clobber
