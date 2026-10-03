@@ -89,16 +89,21 @@ Pholio is the rewrite of an older personal project. This new version was built w
 coding assistants: they wrote a large share of the code, under close direction and review. It is a real-world
 experiment in what a single developer can build this way.
 
-## Open source — but not here, yet
+## Source available — on Gitea, not here
 
-Pholio is open source. Its source code is nevertheless **not** published on GitHub, and that is a deliberate
-choice.
+Pholio's source code is public, but Pholio is **source-available, not open source**: it is licensed under the
+[PolyForm Strict License 1.0.0](LICENSE.txt), with [additional permissions](ADDITIONAL-PERMISSIONS.md). You
+may use it as is for noncommercial purposes; commercial use, including inside a company, needs a separate
+licence from the author.
 
-Using AI to help write the code is one thing. Letting the code be used to train AI models is another, and it
-should require the author's consent. GitHub's policy on how hosted repositories may be used for AI training is
-not clear enough to give that assurance, so this repository only hosts the installers and the release notes.
+The code is deliberately **not** published on GitHub. Using AI to help write the code is one thing. Letting
+the code be used to train AI models is another, and it should require the author's consent: training,
+fine-tuning or evaluating machine-learning models on Pholio is prohibited without it. GitHub's policy on how
+hosted repositories may be used for AI training is not clear enough to give that assurance, so this
+repository only hosts the installers and the release notes.
 
-The sources will soon be available on a self-hosted Gitea instance — a link will be added here.
+The sources live on a self-hosted Gitea instance: https://git.pholio.freeddns.org/Imag-In/pholio. Forks and
+pull requests are welcome there — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Release notes
 

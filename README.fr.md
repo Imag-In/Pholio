@@ -98,16 +98,22 @@ importante d'assistants de programmation IA : ils ont écrit une grande partie d
 une relecture attentives. C'est une expérience grandeur nature de ce qu'un développeur seul peut construire
 de cette façon.
 
-## Open source — mais pas ici, pas encore
+## Code source disponible — sur Gitea, pas ici
 
-Pholio est open source. Son code source n'est pourtant **pas** publié sur GitHub, et c'est un choix délibéré.
+Le code source de Pholio est public, mais Pholio est **à source disponible, pas open source** : il est sous
+[licence PolyForm Strict 1.0.0](LICENSE.txt), avec des [permissions supplémentaires](ADDITIONAL-PERMISSIONS.md).
+Vous pouvez l'utiliser tel quel à des fins non commerciales ; un usage commercial, y compris au sein d'une
+entreprise, nécessite une licence distincte de l'auteur.
 
-Utiliser l'IA pour aider à écrire le code est une chose. Laisser ce code servir à entraîner des modèles d'IA
-en est une autre, et cela devrait nécessiter l'accord de l'auteur. La politique de GitHub sur l'utilisation des
-dépôts hébergés pour l'entraînement de l'IA n'est pas assez claire pour offrir cette garantie ; ce dépôt
-n'héberge donc que les installeurs et les notes de version.
+Le code n'est volontairement **pas** publié sur GitHub. Utiliser l'IA pour aider à écrire le code est une
+chose. Laisser ce code servir à entraîner des modèles d'IA en est une autre, et cela devrait nécessiter
+l'accord de l'auteur : entraîner, affiner ou évaluer des modèles d'apprentissage automatique sur Pholio est
+interdit sans cet accord. La politique de GitHub sur l'utilisation des dépôts hébergés pour l'entraînement de
+l'IA n'est pas assez claire pour offrir cette garantie ; ce dépôt n'héberge donc que les installeurs et les
+notes de version.
 
-Les sources seront bientôt disponibles sur une instance Gitea auto-hébergée — un lien sera ajouté ici.
+Les sources sont sur une instance Gitea auto-hébergée : https://git.pholio.freeddns.org/Imag-In/pholio. Les
+forks et les pull requests y sont les bienvenus — voir [CONTRIBUTING.md](CONTRIBUTING.md) (en anglais).
 
 ## Notes de version
 
