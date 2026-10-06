@@ -37,10 +37,15 @@ fi
 # JVM options baked into the native launcher.
 #   --enable-native-access   JavaFX, JNA, ONNX Runtime and the macOS process naming all call native code.
 #   EnableDynamicAgentLoading FxThreadAgent self-attaches Byte Buddy at startup.
+#   MaxRAMPercentage          Hard heap ceiling, fixed for the JVM's lifetime. The user picks the target below
+#                             it in the settings (system.max-heap-percent, 25 % by default), applied live as
+#                             ZGC's SoftMaxHeapSize by HeapTarget — keep that preference's max equal to this.
+#                             Half the RAM at most: ONNX Runtime allocates outside the Java heap.
 JAVA_OPTIONS=(
     "--enable-native-access=ALL-UNNAMED,javafx.graphics"
     "-XX:+EnableDynamicAgentLoading"
     "-XX:+UseZGC"
+    "-XX:MaxRAMPercentage=50"
     "-Dspring.jmx.enabled=false"
 )
 
