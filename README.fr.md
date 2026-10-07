@@ -6,7 +6,7 @@
 
 Pholio est une application de bureau pour organiser, parcourir et rechercher de grandes collections de photos et
 de vidéos — des dizaines de milliers de fichiers — où qu'elles se trouvent : le disque de votre ordinateur, des
-disques USB, un NAS ou n'importe quel partage réseau (l'un ou une combinaison, selon les performances attendues).
+disques USB, un NAS ou n'importe quel partage réseau (ou une combinaison, selon les performances attendues).
 
 ## Téléchargement
 
@@ -15,12 +15,12 @@ Les installeurs pour **macOS** (Apple Silicon et Intel), **Windows** et **Linux*
 
 Dernière version : [![dernière release](https://img.shields.io/github/v/release/Imag-In/Pholio?label=Pholio&color=blue)](../../releases/latest)
 
-| Plateforme | Téléchargement |
-|---|---|
+| Plateforme                             | Téléchargement                                                                                              |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | macOS — Apple Silicon (M1 et suivants) | [pholio-macos-arm64.dmg](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-macos-arm64.dmg) |
-| macOS — Intel | [pholio-macos-x64.dmg](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-macos-x64.dmg) |
-| Windows 64 bits | [pholio-windows-x64.msi](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-windows-x64.msi) |
-| Linux 64 bits (Debian, Ubuntu, …) | [pholio-linux-amd64.deb](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-linux-amd64.deb) |
+| macOS — Intel                          | [pholio-macos-x64.dmg](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-macos-x64.dmg)     |
+| Windows 64 bits                        | [pholio-windows-x64.msi](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-windows-x64.msi) |
+| Linux 64 bits (Debian, Ubuntu, …)      | [pholio-linux-amd64.deb](https://github.com/Imag-In/Pholio/releases/latest/download/pholio-linux-amd64.deb) |
 
 Les versions précédentes, et une somme de contrôle pour chaque installeur, sont sur la
 [page des releases](../../releases).
@@ -28,8 +28,8 @@ Les versions précédentes, et une somme de contrôle pour chaque installeur, so
 Les installeurs ne sont pas encore signés : votre système peut donc afficher un avertissement la première fois
 que vous ouvrez Pholio.
 
-- **macOS** — glissez Pholio dans *Applications* et ouvrez-le une fois ; quand macOS refuse, allez dans
-  *Réglages Système → Confidentialité et sécurité* et cliquez sur *Ouvrir quand même* à côté du message
+- **macOS** — glissez Pholio dans *Applications* et ouvrez-le une fois ; quand macOS refuse, allez dans *Réglages Système → Confidentialité et sécurité* et
+  cliquez sur *Ouvrir quand même* à côté du message
   concernant Pholio. Sur les versions plus anciennes de macOS, un clic droit sur l'application puis *Ouvrir*
   suffit.
 
