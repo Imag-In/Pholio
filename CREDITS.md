@@ -24,6 +24,7 @@ Libraries shipped inside Pholio, with their license.
 - **[Apache Commons Imaging](https://commons.apache.org/proper/commons-imaging/)** and **[Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)** — Apache License 2.0
 - **[Adobe XMPCore](https://github.com/adobe/XMP-Toolkit-SDK)** — BSD 3-Clause
 - **[TwelveMonkeys ImageIO](https://github.com/haraldk/TwelveMonkeys)** — BSD 3-Clause
+- **[imageio-native](https://github.com/ghosthack/imageio-native)** and **[panama-media](https://github.com/ghosthack/panama-media)** — MIT
 - **[ONNX Runtime](https://onnxruntime.ai)** — MIT
 - **[Byte Buddy](https://bytebuddy.net)** — Apache License 2.0
 - **[Java Native Access](https://github.com/java-native-access/jna)** — Apache License 2.0 / LGPL 2.1
