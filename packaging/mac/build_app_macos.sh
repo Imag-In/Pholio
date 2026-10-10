@@ -46,7 +46,6 @@ log "Running jpackage (dmg, ${ARCH})"
     --dest "${BUILD_DIR}/installer" \
     --name "${APP_NAME}" \
     --app-version "${APP_VERSION}" \
-    --vendor "${APP_VENDOR}" \
-    --license-file "${PACKAGING_DIR}/../LICENSE.txt"
+    --vendor "${APP_VENDOR}"
 
 publish_installer "*.dmg" "pholio-${APP_VERSION}-macos-${ARCH}.dmg"

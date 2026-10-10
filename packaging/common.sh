@@ -151,7 +151,6 @@ common_jpackage_args() {
     JPACKAGE_ARGS=(
         "${JPACKAGE_IMAGE_ARGS[@]}"
         --dest "${BUILD_DIR}/installer"
-        --license-file "${PACKAGING_DIR}/../LICENSE.txt"
     )
 }
 
