@@ -6,7 +6,9 @@
 #
 # Each OS job: JDK 27 with JavaFX (Zulu jdk+fx) -> the release jar -> `java -Djarmode=tools -jar … extract`
 # -> packaging/<os>/build_app_<os>.sh (jlink'ed runtime + jpackage) -> installer and .sha256 uploaded to
-# the release, replacing any previous upload of the same name.
+# the release, replacing any previous upload of the same name. Once every installer is attached, the jar
+# and its .sha256 are removed from the release: it then only offers the installers. A failed OS job keeps
+# them, so the run can be retried; repackaging an existing release by hand needs the jar re-uploaded first.
 name: package
 
 on:
@@ -102,3 +104,22 @@ jobs:
           gh release upload "v${version}" dist/* \
             --repo "${GITHUB_REPOSITORY}" \
             --clobber
+
+  # Only once every OS job succeeded: a failure leaves the jar in place for a rerun.
+  remove-jar:
+    name: remove the jar from the release
+    needs: package
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Delete the jar and its checksum
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          version="${tag#v}"
+          [ -n "${version}" ] || version="${{ inputs.version }}"
+          version="${version#v}"
+          for asset in "pholio-${version}.jar" "pholio-${version}.jar.sha256"; do
+            gh release delete-asset "v${version}" "${asset}" --repo "${GITHUB_REPOSITORY}" --yes \
+              || echo "${asset} not attached to v${version}"
+          done
