@@ -48,5 +48,6 @@ Face and animal recognition run entirely on your computer, with these models, us
 ## Map and place data
 
 - Offline place names come from **[GeoNames](https://www.geonames.org)**, licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
+- The offline world map's countries come from **[Natural Earth](https://www.naturalearthdata.com)**, in the public domain.
 - Map tiles © **[OpenStreetMap](https://www.openstreetmap.org/copyright)** contributors, available under the Open Database License (ODbL).
 - When configured, online place search is provided by **[LocationIQ](https://locationiq.com)**.
