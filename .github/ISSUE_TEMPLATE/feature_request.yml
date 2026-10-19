@@ -1,0 +1,26 @@
+name: Idea or request
+description: Suggest a feature or an improvement.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for the idea. English or French, as you prefer.
+        Please check first that it is not already proposed in the [open issues](https://github.com/Imag-In/Pholio/issues).
+  - type: textarea
+    id: need
+    attributes:
+      label: What you would like to do
+      description: The task you are trying to get done with your photos, and what gets in the way today.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: How Pholio could help
+      description: What you imagine — a button, a view, a setting. A sketch or a screenshot of another app is welcome.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you do today instead
+      description: Another application, a workaround, nothing.

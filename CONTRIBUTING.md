@@ -16,8 +16,10 @@ controlled by the [PolyForm Strict License 1.0.0](LICENSE.txt) and the
 
 ## Reporting bugs and ideas
 
-Open an issue on [Imag-In/Pholio](https://github.com/Imag-In/Pholio/issues). For a bug, give the Pholio
-version, your operating system, what you did, what you expected and what happened.
+Open an issue on [Imag-In/Pholio](https://github.com/Imag-In/Pholio/issues/new/choose) and pick the form that fits:
+**Bug report** or **Idea or request**. GitHub issues are where users talk to us; Pholio's own roadmap and
+development are tracked internally. An issue is closed once the release that settles it is published, with a
+word on that release.
 
 ## Contributing code
 

@@ -105,6 +105,11 @@ repository only hosts the installers and the release notes.
 The sources live on a self-hosted Gitea instance: https://git.pholio.freeddns.org/Imag-In/pholio. Forks and
 pull requests are welcome there — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Report a bug or suggest an idea
+
+[Open an issue](https://github.com/Imag-In/Pholio/issues/new/choose) here on GitHub, with the **Bug report** or
+**Idea or request** form. English or French, as you prefer.
+
 ## Release notes
 
 Every release comes with its notes, also kept in [`release_note/`](release_note/).

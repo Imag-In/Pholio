@@ -1,0 +1,59 @@
+name: Bug report
+description: Something in Pholio does not work as it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a problem. English or French, as you prefer.
+        Please check first that it is not already reported in the [open issues](https://github.com/Imag-In/Pholio/issues).
+  - type: input
+    id: version
+    attributes:
+      label: Pholio version
+      description: For example 2026.10.13. If you are not sure, the date you installed it helps.
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS (Apple silicon)
+        - macOS (Intel)
+        - Windows
+        - Linux
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      placeholder: macOS 26.1, Windows 11 24H2, Ubuntu 24.04…
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, step by step, and what Pholio did.
+      placeholder: |
+        1. Open a library on a network share
+        2. …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Your library
+      description: Roughly how many photos and videos, and where they are (internal disk, USB drive, NAS…).
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: An error message, the lines of Pholio's log around the problem, or a screenshot. Remove anything private first.
+      render: text

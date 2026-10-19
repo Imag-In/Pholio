@@ -115,6 +115,11 @@ notes de version.
 Les sources sont sur une instance Gitea auto-hébergée : https://git.pholio.freeddns.org/Imag-In/pholio. Les
 forks et les pull requests y sont les bienvenus — voir [CONTRIBUTING.md](CONTRIBUTING.md) (en anglais).
 
+## Signaler un bug ou proposer une idée
+
+[Ouvrez une issue](https://github.com/Imag-In/Pholio/issues/new/choose) ici sur GitHub, avec le formulaire
+**Bug report** ou **Idea or request**. En français ou en anglais, comme vous préférez.
+
 ## Notes de version
 
 Chaque release est accompagnée de ses notes, également conservées dans [`release_note/`](release_note/).
