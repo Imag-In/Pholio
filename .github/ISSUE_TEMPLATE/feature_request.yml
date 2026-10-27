@@ -24,3 +24,16 @@ body:
     attributes:
       label: What you do today instead
       description: Another application, a workaround, nothing.
+  - type: textarea
+    id: sample
+    attributes:
+      label: Example photo or video
+      description: |
+        If the idea is about a kind of file (a format Pholio does not open, metadata it does not read, a camera or a
+        phone…), attach one: drag it here, or click the bar below the field. A file GitHub does not accept as it is
+        (HEIC, RAW, XMP sidecar…) goes in a .zip, its sidecar with it.
+
+        **This issue is public.** Attach a photo you are fine with anyone seeing, and remove what is private first:
+        faces, documents, the place where it was taken (the GPS position written in the file), names in its keywords.
+        A copy with these removed is fine, as long as it still shows what you mean; say so if you changed it.
+      placeholder: Drop the file here, and say what it shows.
