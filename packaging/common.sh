@@ -42,7 +42,7 @@ fi
 #                             ZGC's SoftMaxHeapSize by HeapTarget — keep that preference's max equal to this.
 #                             Half the RAM at most: ONNX Runtime allocates outside the Java heap.
 JAVA_OPTIONS=(
-    "--enable-native-access=ALL-UNNAMED,javafx.graphics"
+    "--enable-native-access=ALL-UNNAMED,javafx.graphics,javafx.media"
     "-XX:+EnableDynamicAgentLoading"
     "-XX:+UseZGC"
     "-XX:MaxRAMPercentage=50"
@@ -109,7 +109,7 @@ build_runtime() {
     # runtime by the libraries (Spring, H2, Byte Buddy, JNA), plus JavaFX itself, used from the class path.
     local explicit="java.base,java.desktop,java.logging,java.management,java.naming,java.net.http,java.sql,\
 java.instrument,java.scripting,java.xml,jdk.attach,jdk.unsupported,jdk.zipfs,jdk.crypto.ec,jdk.localedata,\
-jdk.management,javafx.base,javafx.graphics,javafx.controls,javafx.fxml,javafx.swing"
+jdk.management,javafx.base,javafx.graphics,javafx.controls,javafx.fxml,javafx.swing,javafx.media"
     local modules="${explicit}"
     [ -n "${detected}" ] && modules="${detected},${explicit}"
 
