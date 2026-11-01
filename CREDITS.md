@@ -12,7 +12,7 @@ Libraries shipped inside Pholio, with their license.
 - **[AtlantaFX Themes](https://github.com/dlsc-software-consulting-gmbh/themes)**, **[GemsFX](https://github.com/dlsc-software-consulting-gmbh/GemsFX)** and **[PickerFX](https://github.com/dlsc-software-consulting-gmbh/PickerFX)** by DLSC — Apache License 2.0
 - **[ControlsFX](https://controlsfx.github.io)** — BSD 3-Clause
 - **[ValidatorFX](https://github.com/effad/ValidatorFX)** — BSD 3-Clause
-- **[Ikonli](https://github.com/kordamp/ikonli)**, with the Material Design and Feather icon packs — Apache License 2.0
+- **[Ikonli](https://github.com/kordamp/ikonli)**, with the Material Design icon packs — Apache License 2.0
 - **[DevToolsFX](https://github.com/mkpaz/devtoolsfx)** — MIT
 - **[H2 Database](https://h2database.com)** — MPL 2.0 / EPL 1.0
 - **[Flyway](https://github.com/flyway/flyway)** — Apache License 2.0
