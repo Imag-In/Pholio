@@ -63,31 +63,47 @@ prepare_input() {
     find "${INPUT_DIR}/lib" -maxdepth 1 -name 'javafx-*.jar' -print -delete
 }
 
-# ONNX Runtime ships one jar with the native libraries of every platform (~590 MB unpacked, win-x64 alone
-# 351 MB). Keeps only $1 — linux-x64, win-x64, osx-aarch64 or osx-x64, the directory names under
-# ai/onnxruntime/native/ — and rebuilds the jar in place. Uses only the JDK's own jar tool: Git Bash on
-# Windows has no zip.
-strip_onnxruntime_natives() {
-    local keep="$1" jar work
-    jar=$(find "${INPUT_DIR}/lib" -maxdepth 1 -name 'onnxruntime-*.jar' | head -n 1)
+# Rebuilds in place the jar of lib/ named $1-*.jar, keeping under its directory $2 only the native libraries of
+# $3 (a path relative to $2): the jars below ship those of every platform. Uses only the JDK's own jar tool: Git
+# Bash on Windows has no zip.
+keep_natives() {
+    local name="$1" root="$2" keep="$3" jar work file
+    jar=$(find "${INPUT_DIR}/lib" -maxdepth 1 -name "${name}-*.jar" | head -n 1)
     if [ -z "${jar}" ]; then
-        log "No onnxruntime jar to strip"
+        log "No ${name} jar to strip"
         return 0
     fi
     jar="$(cd "$(dirname "${jar}")" && pwd)/$(basename "${jar}")"
-    work="$(pwd)/${BUILD_DIR}/onnxruntime"
+    work="$(pwd)/${BUILD_DIR}/${name}"
     rm -rf "${work}" && mkdir -p "${work}"
     (cd "${work}" && "${JAVA_BIN}/jar" xf "${jar}")
-    [ -d "${work}/ai/onnxruntime/native/${keep}" ] || { echo "ONNX Runtime has no native/${keep}" >&2; exit 1; }
-    local dir
-    for dir in "${work}"/ai/onnxruntime/native/*/; do
-        [ "$(basename "${dir}")" = "${keep}" ] || rm -rf "${dir}"
-    done
-    mv "${work}/META-INF/MANIFEST.MF" "${BUILD_DIR}/onnxruntime.MF"
+    [ -d "${work}/${root}/${keep}" ] || { echo "${name} has no ${root}/${keep}" >&2; exit 1; }
+    while IFS= read -r file; do
+        case "${file}" in
+            "${work}/${root}/${keep}/"*) ;;
+            *) rm -f "${file}" ;;
+        esac
+    done < <(find "${work}/${root}" -type f)
+    find "${work}/${root}" -depth -type d -empty -delete
+    mv "${work}/META-INF/MANIFEST.MF" "${BUILD_DIR}/${name}.MF"
     rm -f "${jar}"
-    "${JAVA_BIN}/jar" --create --file "${jar}" --manifest "${BUILD_DIR}/onnxruntime.MF" -C "${work}" .
-    rm -rf "${work}" "${BUILD_DIR}/onnxruntime.MF"
-    log "ONNX Runtime natives reduced to ${keep}: $(du -h "${jar}" | cut -f1)"
+    "${JAVA_BIN}/jar" --create --file "${jar}" --manifest "${BUILD_DIR}/${name}.MF" -C "${work}" .
+    rm -rf "${work}" "${BUILD_DIR}/${name}.MF"
+    log "${name} natives reduced to ${keep}: $(du -h "${jar}" | cut -f1)"
+}
+
+# ONNX Runtime ships one jar with the native libraries of every platform (~590 MB unpacked, win-x64 alone
+# 351 MB). Keeps only $1 — linux-x64, win-x64, osx-aarch64 or osx-x64, the directory names under
+# ai/onnxruntime/native/.
+strip_onnxruntime_natives() {
+    keep_natives onnxruntime ai/onnxruntime/native "$1"
+}
+
+# sqlite-jdbc (the Apple Photos import, Imag-In/pholio-roadmap#111) carries 20 native libraries of about 1 MB, for
+# every OS and architecture it knows. Keeps only $1 — Linux/x86_64, Windows/x86_64, Mac/aarch64 or Mac/x86_64, the
+# directories under org/sqlite/native/.
+strip_sqlite_natives() {
+    keep_natives sqlite-jdbc org/sqlite/native "$1"
 }
 
 build_runtime() {

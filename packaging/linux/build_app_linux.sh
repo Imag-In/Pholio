@@ -5,6 +5,7 @@ source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../common.sh"
 
 prepare_input
 strip_onnxruntime_natives linux-x64
+strip_sqlite_natives Linux/x86_64
 build_runtime
 common_jpackage_args "${APP_VERSION}"
 
