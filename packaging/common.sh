@@ -106,9 +106,10 @@ strip_sqlite_natives() {
     keep_natives sqlite-jdbc org/sqlite/native "$1"
 }
 
-# Pholio's own jar carries libjpeg-turbo for Windows and Linux (Imag-In/pholio-roadmap#198), under native/windows-x64
-# and native/linux-x64. Rebuilds it without the directories of native/ named $@: those of the other systems. A jar
-# without one of them (a release made before) is left as it is for that one.
+# Pholio's own jar carries libjpeg-turbo for every system (Imag-In/pholio-roadmap#198), under native/windows-x64,
+# native/linux-x64, native/macos-arm64 and native/macos-x64. Rebuilds it without the directories of native/ named $@:
+# those of the other systems and architectures. A jar without one of them (a release made before) is left as it is
+# for that one.
 drop_main_jar_natives() {
     local jar work dir dropped=""
     jar="$(cd "${INPUT_DIR}" && pwd)/${MAIN_JAR}"
