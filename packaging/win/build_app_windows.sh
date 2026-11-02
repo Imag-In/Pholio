@@ -12,6 +12,7 @@ MSI_VERSION="$((YEAR - 2000)).${MONTH}.${BUILD}"
 prepare_input
 strip_onnxruntime_natives win-x64
 strip_sqlite_natives Windows/x86_64
+drop_main_jar_natives linux-x64
 build_runtime
 common_jpackage_args "${MSI_VERSION}"
 

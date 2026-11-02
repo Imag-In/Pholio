@@ -12,6 +12,7 @@ esac
 prepare_input
 strip_onnxruntime_natives "${ORT_NATIVE}"
 strip_sqlite_natives "${SQLITE_NATIVE}"
+drop_main_jar_natives windows-x64 linux-x64
 build_runtime
 common_jpackage_args "${APP_VERSION}"
 

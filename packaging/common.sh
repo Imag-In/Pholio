@@ -106,6 +106,33 @@ strip_sqlite_natives() {
     keep_natives sqlite-jdbc org/sqlite/native "$1"
 }
 
+# Pholio's own jar carries libjpeg-turbo for Windows and Linux (Imag-In/pholio-roadmap#198), under native/windows-x64
+# and native/linux-x64. Rebuilds it without the directories of native/ named $@: those of the other systems. A jar
+# without one of them (a release made before) is left as it is for that one.
+drop_main_jar_natives() {
+    local jar work dir dropped=""
+    jar="$(cd "${INPUT_DIR}" && pwd)/${MAIN_JAR}"
+    work="$(pwd)/${BUILD_DIR}/main-jar"
+    rm -rf "${work}" && mkdir -p "${work}"
+    (cd "${work}" && "${JAVA_BIN}/jar" xf "${jar}")
+    for dir in "$@"; do
+        if [ -d "${work}/native/${dir}" ]; then
+            rm -rf "${work}/native/${dir}"
+            dropped="${dropped} ${dir}"
+        fi
+    done
+    if [ -n "${dropped}" ]; then
+        mv "${work}/META-INF/MANIFEST.MF" "${BUILD_DIR}/main-jar.MF"
+        rm -f "${jar}"
+        "${JAVA_BIN}/jar" --create --file "${jar}" --manifest "${BUILD_DIR}/main-jar.MF" -C "${work}" .
+        rm -f "${BUILD_DIR}/main-jar.MF"
+        log "${MAIN_JAR} without native/{${dropped# }}: $(du -h "${jar}" | cut -f1)"
+    else
+        log "${MAIN_JAR} has none of native/{$*}"
+    fi
+    rm -rf "${work}"
+}
+
 build_runtime() {
     log "Detecting required modules"
     local detected=""
