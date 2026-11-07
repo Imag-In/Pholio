@@ -24,6 +24,7 @@ Libraries shipped inside Pholio, with their license.
 - **[Apache Commons Imaging](https://commons.apache.org/proper/commons-imaging/)** and **[Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)** — Apache License 2.0
 - **[Adobe XMPCore](https://github.com/adobe/XMP-Toolkit-SDK)** — BSD 3-Clause
 - **[TwelveMonkeys ImageIO](https://github.com/haraldk/TwelveMonkeys)** — BSD 3-Clause
+- **[libjpeg-turbo](https://libjpeg-turbo.org)** — BSD 3-Clause, IJG License and zlib License
 - **[imageio-native](https://github.com/ghosthack/imageio-native)** and **[panama-media](https://github.com/ghosthack/panama-media)** — MIT
 - **[ONNX Runtime](https://onnxruntime.ai)** — MIT
 - **[Byte Buddy](https://bytebuddy.net)** — Apache License 2.0
@@ -43,7 +44,7 @@ Face and animal recognition run entirely on your computer, with these models, us
 
 - **[YuNet](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet)** face detection, from OpenCV Zoo — MIT
 - **[SFace](https://github.com/opencv/opencv_zoo/tree/main/models/face_recognition_sface)** face recognition, from OpenCV Zoo — Apache License 2.0
-- **[YOLOX-Nano](https://github.com/Megvii-BaseDetection/YOLOX)** object detection, by Megvii — Apache License 2.0
+- **[YOLOX-S and YOLOX-Nano](https://github.com/Megvii-BaseDetection/YOLOX)** object detection, by Megvii — Apache License 2.0
 
 ## Map and place data
 
