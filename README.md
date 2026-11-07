@@ -8,6 +8,10 @@ Pholio is a desktop application to organise, browse and search large photo and v
 thousands of files — wherever they live: your computer's own disk, USB drives, a NAS or any network share (choose one or a combination, according to your
 performance expectation).
 
+[![Pholio — asking an AI assistant about your photos](screenshots/mcp.webp)](https://getpholio.ca)
+
+More on the website: **[getpholio.ca](https://getpholio.ca)**
+
 ## Download
 
 Installers for **macOS** (Apple Silicon and Intel), **Windows** and **Linux** are attached to each
@@ -47,21 +51,8 @@ The installers are not signed yet, so your system may warn you the first time yo
 
 ## Main features
 
-- **Libraries** — add the folders you want, on as many drives as you like; Pholio indexes them and keeps up
-  with what changes. Several independent libraries can live side by side.
-- **A fast timeline** — every photo and video in one smooth, date-ordered grid, grouped by day, that stays
-  fluid on very large collections. Double-click for a full-screen view, browse with the arrow keys.
-- **Everything about a photo** — capture date, camera and settings, file details, location on a map, and
-  the complete list of the metadata stored in the file.
-- **Fix what's wrong** — correct a capture date, set or change a location, rate a photo; location and rating
-  can also be applied to a whole day's selection at once.
-- **Places** — locations are turned into place names without any internet connection; an online place search
-  can be added if you want more precise addresses.
-- **People and pets** — faces and animals are detected and grouped on your own computer; give a person a
-  name once and all their photos become searchable.
-- **Search** — type a word, a place, a person, or combine filters such as a minimum rating or a folder (`beach r:4+`, `p:Alice path:Holidays`). The `?` next to
-  the search bar explains everything.
-- **Favourites**, light and dark themes, English and French.
+Libraries, timeline, search, places, people and pets, duplicates, albums, import from phones and cards, AI
+assistants…: see the [features on getpholio.ca](https://getpholio.ca/#fonctionnalites).
 
 ## Your files stay yours
 

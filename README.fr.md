@@ -8,6 +8,10 @@ Pholio est une application de bureau pour organiser, parcourir et rechercher de 
 de vidéos — des dizaines de milliers de fichiers — où qu'elles se trouvent : le disque de votre ordinateur, des
 disques USB, un NAS ou n'importe quel partage réseau (ou une combinaison, selon les performances attendues).
 
+[![Pholio — interroger un assistant IA sur vos photos](screenshots/mcp.webp)](https://getpholio.ca)
+
+Plus d'informations sur le site : **[getpholio.ca](https://getpholio.ca)**
+
 ## Téléchargement
 
 Les installeurs pour **macOS** (Apple Silicon et Intel), **Windows** et **Linux** sont joints à chaque
@@ -52,22 +56,8 @@ que vous ouvrez Pholio.
 
 ## Fonctionnalités principales
 
-- **Photothèques** — ajoutez les dossiers que vous voulez, sur autant de disques que vous le souhaitez ;
-  Pholio les indexe et suit ce qui change. Plusieurs photothèques indépendantes peuvent coexister.
-- **Une chronologie rapide** — toutes vos photos et vidéos dans une seule grille fluide, triée par date et
-  regroupée par jour, qui reste réactive sur de très grandes collections. Double-cliquez pour l'affichage plein
-  écran, naviguez avec les flèches du clavier.
-- **Tout sur une photo** — date de prise de vue, appareil et réglages, informations sur le fichier, lieu sur
-  une carte, et la liste complète des métadonnées enregistrées dans le fichier.
-- **Corriger ce qui ne va pas** — corrigez une date de prise de vue, ajoutez ou modifiez un lieu, notez une
-  photo ; le lieu et la note peuvent aussi s'appliquer d'un coup à la sélection de toute une journée.
-- **Lieux** — les positions sont traduites en noms de lieux sans aucune connexion Internet ; une recherche de
-  lieux en ligne peut être ajoutée pour des adresses plus précises.
-- **Personnes et animaux** — les visages et les animaux sont détectés et regroupés sur votre propre
-  ordinateur ; nommez une personne une fois et toutes ses photos deviennent trouvables.
-- **Recherche** — tapez un mot, un lieu, une personne, ou combinez des filtres comme une note minimale ou un
-  dossier (`plage r:4+`, `p:Alice path:Vacances`). Le `?` à côté de la barre de recherche explique tout.
-- **Favoris**, thèmes clair et sombre, anglais et français.
+Photothèques, chronologie, recherche, lieux, personnes et animaux, doublons, albums, import depuis les
+téléphones et les cartes, assistants IA… : voir les [fonctionnalités sur getpholio.ca](https://getpholio.ca/#fonctionnalites).
 
 ## Vos fichiers restent les vôtres
 
