@@ -9,6 +9,8 @@
 # the release, replacing any previous upload of the same name. Once every installer is attached, the jar
 # and its .sha256 are removed from the release: it then only offers the installers. A failed OS job keeps
 # them, so the run can be retried; repackaging an existing release by hand needs the jar re-uploaded first.
+# Then every release but the two newest (and the one just packaged) loses its assets: the releases and their
+# notes stay, only the two newest offer installers (GitHub's own source archives cannot be removed).
 name: package
 
 on:
@@ -123,3 +125,32 @@ jobs:
             gh release delete-asset "v${version}" "${asset}" --repo "${GITHUB_REPOSITORY}" --yes \
               || echo "${asset} not attached to v${version}"
           done
+
+  # Only the two newest releases keep their assets (installers, checksums, note): older releases stay listed
+  # with their description, without downloads. The release just packaged is always kept, so repackaging an
+  # older one by hand does not delete what it built.
+  prune-assets:
+    name: remove the assets of older releases
+    needs: remove-jar
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      KEEP: 2
+    steps:
+      - name: Delete the assets of every release but the two newest
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          [ -n "${tag}" ] || tag="v${{ inputs.version }}"
+          tag="v${tag#v}"
+          gh release list --repo "${GITHUB_REPOSITORY}" --exclude-drafts --limit 1000 \
+              --json tagName,createdAt --jq 'sort_by(.createdAt) | reverse | .[].tagName' \
+            | tail -n +$((KEEP + 1)) \
+            | while read -r old; do
+                [ "${old}" = "${tag}" ] && continue
+                gh release view "${old}" --repo "${GITHUB_REPOSITORY}" --json assets --jq '.assets[].name' \
+                  | while read -r asset; do
+                      echo "Deleting ${old}/${asset}"
+                      gh release delete-asset "${old}" "${asset}" --repo "${GITHUB_REPOSITORY}" --yes \
+                        || echo "Could not delete ${old}/${asset}"
+                    done
+              done
