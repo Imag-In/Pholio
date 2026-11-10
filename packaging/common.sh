@@ -49,6 +49,15 @@ JAVA_OPTIONS=(
     "-Dspring.jmx.enabled=false"
 )
 
+# Where the JVM writes its crash file (hs_err), read back at the next start by CrashReportService
+# (Imag-In/pholio-roadmap#207). Started from the Finder or a desktop menu, the working directory is / or the
+# installation's, not writable: the file would land in the temporary folder under a name nothing looks for.
+# HotSpot only expands %p (and %t) here, jpackage only $APPDIR…: the user's log folder cannot be named, Pholio
+# copies the file there. Windows keeps the JVM's own fallback, %TEMP%, which Pholio searches too.
+if ! command -v cygpath >/dev/null 2>&1; then
+    JAVA_OPTIONS+=("-XX:ErrorFile=/tmp/pholio-hs_err_pid%p.log")
+fi
+
 log() { printf '\n[packaging] %s\n' "$*"; }
 
 prepare_input() {
