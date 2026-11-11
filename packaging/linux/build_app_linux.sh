@@ -11,12 +11,14 @@ build_runtime
 common_jpackage_args "${APP_VERSION}"
 
 log "Running jpackage (deb)"
+# fonts-noto-cjk: JavaFX bundles no Chinese or Japanese font and a Linux desktop may have none (Imag-In/pholio-roadmap#235).
 "${JAVA_BIN}/jpackage" "${JPACKAGE_ARGS[@]}" \
     --type deb \
     --icon "${PACKAGING_DIR}/linux/pholio.png" \
     --linux-package-name pholio \
     --linux-shortcut \
     --linux-menu-group "Graphics" \
-    --linux-app-category graphics
+    --linux-app-category graphics \
+    --linux-package-deps fonts-noto-cjk
 
 publish_installer "*.deb" "pholio-${APP_VERSION}-linux-amd64.deb"
