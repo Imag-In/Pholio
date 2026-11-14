@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- jpackage's own installer texts in French (it ships en, de, ja and zh_CN), Imag-In/pholio-roadmap#284. -->
+<WixLocalization Culture="fr-fr" xmlns="http://schemas.microsoft.com/wix/2006/localization" Codepage="1252">
+  <String Id="MainFeatureTitle">Fonctionnalité principale</String>
+  <String Id="DowngradeErrorMessage">Une version plus récente de [ProductName] est déjà installée. Le retour à une version antérieure est désactivé. L'installation va s'arrêter.</String>
+  <String Id="DisallowUpgradeErrorMessage">Une version plus ancienne de [ProductName] est déjà installée. La mise à jour est désactivée. L'installation va s'arrêter.</String>
+
+  <String Id="ShortcutPromptDlg_Title">Installation de [ProductName]</String>
+  <String Id="ShortcutPromptDlgTitle">{\WixUI_Font_Title}Raccourcis</String>
+  <String Id="ShortcutPromptDlgBannerBitmap">WixUI_Bmp_Banner</String>
+  <String Id="ShortcutPromptDlgDescription">Choisissez les raccourcis à créer.</String>
+  <String Id="ShortcutPromptDlgDesktopShortcutControlLabel">Créer un raccourci sur le bureau</String>
+  <String Id="ShortcutPromptDlgStartMenuShortcutControlLabel">Créer un raccourci dans le menu Démarrer</String>
+
+  <String Id="InstallDirNotEmptyDlg_Title">Installation de [ProductName]</String>
+  <String Id="InstallDirNotEmptyDlgInstallDirExistMessage">Le dossier [INSTALLDIR] existe déjà. Voulez-vous quand même installer dans ce dossier ?</String>
+
+  <String Id="ContextMenuCommandLabel">Ouvrir avec [ProductName]</String>
+
+  <String Id="OsConditionMessage">[ProductName] [ProductVersion] ne fonctionne pas sur cette version de Windows</String>
+</WixLocalization>

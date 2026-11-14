@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- jpackage's own installer texts in Spanish (it ships en, de, ja and zh_CN), Imag-In/pholio-roadmap#284. -->
+<WixLocalization Culture="es-es" xmlns="http://schemas.microsoft.com/wix/2006/localization" Codepage="1252">
+  <String Id="MainFeatureTitle">Función principal</String>
+  <String Id="DowngradeErrorMessage">Ya hay instalada una versión más reciente de [ProductName]. No se permite volver a una versión anterior. La instalación se cerrará.</String>
+  <String Id="DisallowUpgradeErrorMessage">Ya hay instalada una versión anterior de [ProductName]. La actualización está desactivada. La instalación se cerrará.</String>
+
+  <String Id="ShortcutPromptDlg_Title">Instalación de [ProductName]</String>
+  <String Id="ShortcutPromptDlgTitle">{\WixUI_Font_Title}Accesos directos</String>
+  <String Id="ShortcutPromptDlgBannerBitmap">WixUI_Bmp_Banner</String>
+  <String Id="ShortcutPromptDlgDescription">Elija los accesos directos que desea crear.</String>
+  <String Id="ShortcutPromptDlgDesktopShortcutControlLabel">Crear un acceso directo en el escritorio</String>
+  <String Id="ShortcutPromptDlgStartMenuShortcutControlLabel">Crear un acceso directo en el menú Inicio</String>
+
+  <String Id="InstallDirNotEmptyDlg_Title">Instalación de [ProductName]</String>
+  <String Id="InstallDirNotEmptyDlgInstallDirExistMessage">La carpeta [INSTALLDIR] ya existe. ¿Desea instalar en esa carpeta de todos modos?</String>
+
+  <String Id="ContextMenuCommandLabel">Abrir con [ProductName]</String>
+
+  <String Id="OsConditionMessage">[ProductName] [ProductVersion] no funciona en esta versión de Windows</String>
+</WixLocalization>

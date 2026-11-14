@@ -25,6 +25,11 @@
 
   <?include $(var.JpConfigDir)/overrides.wxi ?>
 
+  <!-- Pholio: the text of the last page's check box, set per language by build_app_windows.sh in overrides.wxi. -->
+  <?ifndef PholioLaunchText ?>
+    <?define PholioLaunchText="Launch Pholio" ?>
+  <?endif?>
+
   <?ifdef JpAllowUpgrades ?>
     <?define JpUpgradeVersionOnlyDetectUpgrade="no"?>
   <?else?>
@@ -116,6 +121,21 @@
     <Property Id="ARPPRODUCTICON" Value="JpARPPRODUCTICON"/>
     <Icon Id="JpARPPRODUCTICON" SourceFile="$(var.JpIcon)"/>
     <?endif?>
+
+    <!-- Pholio: the installer's pictures (tools/icons/make-msi-images.py in the source repository,
+         Imag-In/pholio-roadmap#284). jpackage only copies the files it knows from its resource directory:
+         build_app_windows.sh names that directory in PHOLIO_MSI_RESOURCES. -->
+    <WixVariable Id="WixUIDialogBmp" Value="$(env.PHOLIO_MSI_RESOURCES)\msi-dialog.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="$(env.PHOLIO_MSI_RESOURCES)\msi-banner.bmp" />
+
+    <!-- Pholio: "Launch Pholio", checked, on the last page of an installation or an upgrade (WiX's ExitDialog shows
+         its optional check box once its text is set, never on a repair or a removal). -->
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="$(var.PholioLaunchText)" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
+    <CustomAction Id="PholioLaunch" Directory="INSTALLDIR" ExeCommand="&quot;[INSTALLDIR]$(var.JpAppName).exe&quot;" Return="asyncNoWait" />
+    <UI>
+      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="PholioLaunch">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 AND NOT Installed</Publish>
+    </UI>
 
     <UIRef Id="JpUI"/>
 

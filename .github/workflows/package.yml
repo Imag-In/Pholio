@@ -11,6 +11,10 @@
 # them, so the run can be retried; repackaging an existing release by hand needs the jar re-uploaded first.
 # Then every release but the two newest (and the one just packaged) loses its assets: the releases and their
 # notes stay, only the two newest offer installers (GitHub's own source archives cannot be removed).
+#
+# A trial run (Run workflow > trial) builds the installers of a release whose jar is attached, and keeps them as the
+# run's artifacts: the release, its jar and the older releases are left as they are. For a packaging change, before
+# the next release.
 name: package
 
 on:
@@ -22,6 +26,11 @@ on:
         description: 'Version to (re)package, without the leading v — e.g. 2026.9.1'
         required: true
         type: string
+      trial:
+        description: 'Trial: keep the installers as artifacts, leave the release alone'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -96,7 +105,16 @@ jobs:
       # a version-less one (pholio-macos-arm64.dmg) that the README links to through
       # releases/latest/download/<name> — a URL GitHub keeps pointing at the newest release, so the download
       # table never needs editing.
+      - name: Keep as artifacts (trial)
+        if: ${{ inputs.trial }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: installers-${{ matrix.label }}
+          path: dist/*
+          retention-days: 7
+
       - name: Attach to the release
+        if: ${{ !inputs.trial }}
         run: |
           version="${{ steps.version.outputs.version }}"
           for installer in dist/*; do
@@ -111,6 +129,7 @@ jobs:
   remove-jar:
     name: remove the jar from the release
     needs: package
+    if: ${{ !inputs.trial }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
