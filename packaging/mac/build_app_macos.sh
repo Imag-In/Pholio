@@ -41,6 +41,8 @@ mv "${LAUNCHER}.patched" "${LAUNCHER}"
 # vtool invalidates the launcher's signature, and an arm64 executable without a valid one is killed on launch.
 codesign --force --sign - "${APP_BUNDLE}"
 
+# The window of the mounted image (Imag-In/pholio-roadmap#298): background, volume icon and layout, from
+# resources/ (Pholio-background.tiff, Pholio-volume.icns, Pholio-dmg-setup.scpt — see the script's header).
 log "Running jpackage (dmg, ${ARCH})"
 "${JAVA_BIN}/jpackage" \
     --type dmg \
@@ -48,6 +50,20 @@ log "Running jpackage (dmg, ${ARCH})"
     --dest "${BUILD_DIR}/installer" \
     --name "${APP_NAME}" \
     --app-version "${APP_VERSION}" \
-    --vendor "${APP_VENDOR}"
+    --vendor "${APP_VENDOR}" \
+    --resource-dir "${PACKAGING_DIR}/mac/resources"
+
+# jpackage ignores a failure of the layout script, and the image then opens as a bare folder with no link to
+# Applications: refuse it.
+DMG_CHECK="${BUILD_DIR}/dmg-check"
+mkdir -p "${DMG_CHECK}"
+hdiutil attach -nobrowse -readonly -quiet -mountpoint "${DMG_CHECK}" "${BUILD_DIR}"/installer/*.dmg
+dmg_laid_out=true
+[[ -f "${DMG_CHECK}/.DS_Store" && -L "${DMG_CHECK}/Applications" ]] || dmg_laid_out=false
+hdiutil detach -quiet "${DMG_CHECK}"
+if [[ "${dmg_laid_out}" != true ]]; then
+    echo "The dmg has no Finder layout (Pholio-dmg-setup.scpt failed)" >&2
+    exit 1
+fi
 
 publish_installer "*.dmg" "pholio-${APP_VERSION}-macos-${ARCH}.dmg"
