@@ -45,6 +45,8 @@ Face and animal recognition run entirely on your computer, with these models, us
 - **[YuNet](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet)** face detection, from OpenCV Zoo — MIT
 - **[SFace](https://github.com/opencv/opencv_zoo/tree/main/models/face_recognition_sface)** face recognition, from OpenCV Zoo — Apache License 2.0
 - **[YOLOX-S and YOLOX-Nano](https://github.com/Megvii-BaseDetection/YOLOX)** object detection, by Megvii — Apache License 2.0
+- **[SigLIP 2](https://github.com/google-research/big_vision)** B/32 at 256 px, scene recognition, by Google — Apache License 2.0;
+  its image encoder alone, weights stored in half precision
 
 ## Map and place data
 
