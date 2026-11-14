@@ -16,14 +16,20 @@ drop_main_jar_natives linux-x64 macos-arm64 macos-x64
 build_runtime
 common_jpackage_args "${MSI_VERSION}"
 
+# Imag-In/pholio-roadmap#280. The program goes to %LOCALAPPDATA%\Pholio App, never to %LOCALAPPDATA%\Pholio
+# where Pholio keeps its data (AppDirectories): jpackage's installer removes its whole installation folder when
+# it is uninstalled, and an upgrade uninstalls the previous version. For the same reason the user does not
+# choose that folder (no --win-dir-chooser): a folder of their own would be wiped with it. resources/main.wxs
+# disarms the cleaner of the versions installed before.
 log "Running jpackage (msi, ProductVersion ${MSI_VERSION})"
 "${JAVA_BIN}/jpackage" "${JPACKAGE_ARGS[@]}" \
     --type msi \
     --icon "${PACKAGING_DIR}/win/pholio.ico" \
+    --resource-dir "${PACKAGING_DIR}/win/resources" \
+    --install-dir 'Pholio App' \
     --win-menu \
     --win-menu-group "${APP_NAME}" \
     --win-shortcut \
-    --win-dir-chooser \
     --win-per-user-install \
     --win-upgrade-uuid "8c5f7a3e-2b1d-4e6a-9f0c-7d4b2a1e5c93"
 
