@@ -27,6 +27,10 @@ Libraries shipped inside Pholio, with their license.
 - **[libjpeg-turbo](https://libjpeg-turbo.org)** — BSD 3-Clause, IJG License and zlib License
 - **[imageio-native](https://github.com/ghosthack/imageio-native)** and **[panama-media](https://github.com/ghosthack/panama-media)** — MIT
 - **[ONNX Runtime](https://onnxruntime.ai)** — MIT
+- **[FFmpeg](https://ffmpeg.org)** 8.1.2, which plays Live Photos and videos — LGPL v3 or later: shipped unmodified, as
+  separate libraries you may replace; its source code is at [ffmpeg.org](https://ffmpeg.org/download.html) and in the
+  build used, [bytedeco's JavaCPP Presets](https://github.com/bytedeco/javacpp-presets/tree/master/ffmpeg)
+- **[JavaCPP](https://github.com/bytedeco/javacpp)** and its FFmpeg presets — Apache License 2.0
 - **[Byte Buddy](https://bytebuddy.net)** — Apache License 2.0
 - **[Java Native Access](https://github.com/java-native-access/jna)** — Apache License 2.0 / LGPL 2.1
 - **[OSHI](https://github.com/oshi/oshi)** — MIT

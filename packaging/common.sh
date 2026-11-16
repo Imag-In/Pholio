@@ -115,6 +115,26 @@ strip_sqlite_natives() {
     keep_natives sqlite-jdbc org/sqlite/native "$1"
 }
 
+# bytedeco's JavaCPP and FFmpeg (video playback, Imag-In/pholio-roadmap#296) put each system's natives in a jar of its
+# own, classifier macosx-arm64, macosx-x86_64, windows-x86_64 or linux-x86_64, next to their classes' jar. Keeps $1's
+# only: the others weigh 20 to 30 MB each.
+keep_bytedeco_natives() {
+    local keep="$1" jar kept=0
+    for jar in "${INPUT_DIR}"/lib/javacpp-*.jar "${INPUT_DIR}"/lib/ffmpeg-*.jar; do
+        [ -e "${jar}" ] || continue
+        case "$(basename "${jar}" .jar)" in
+            *-"${keep}") kept=$((kept + 1)) ;;
+            *-macosx-arm64|*-macosx-x86_64|*-windows-x86_64|*-linux-x86_64)
+                rm -f "${jar}"
+                log "Dropped $(basename "${jar}")" ;;
+        esac
+    done
+    if [ "${kept}" -eq 0 ] && ls "${INPUT_DIR}"/lib/ffmpeg-*.jar >/dev/null 2>&1; then
+        echo "No bytedeco natives for ${keep}" >&2
+        exit 1
+    fi
+}
+
 # Pholio's own jar carries libjpeg-turbo for every system (Imag-In/pholio-roadmap#198), under native/windows-x64,
 # native/linux-x64, native/macos-arm64 and native/macos-x64. Rebuilds it without the directories of native/ named $@:
 # those of the other systems and architectures. A jar without one of them (a release made before) is left as it is
