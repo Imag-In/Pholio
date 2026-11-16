@@ -58,3 +58,7 @@ Face and animal recognition run entirely on your computer, with these models, us
 - The offline world map's countries come from **[Natural Earth](https://www.naturalearthdata.com)**, in the public domain.
 - Map tiles © **[OpenStreetMap](https://www.openstreetmap.org/copyright)** contributors, available under the Open Database License (ODbL).
 - When configured, online place search is provided by **[LocationIQ](https://locationiq.com)**.
+
+## Holiday dates
+
+- The days of Chinese New Year, Diwali, Hanukkah and Holi come from the tables of **[python-holidays](https://github.com/vacanza/holidays)** — MIT
