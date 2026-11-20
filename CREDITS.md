@@ -14,6 +14,12 @@ Libraries shipped inside Pholio, with their license.
 - **[ValidatorFX](https://github.com/effad/ValidatorFX)** — BSD 3-Clause
 - **[Ikonli](https://github.com/kordamp/ikonli)**, with the Material Design icon packs — Apache License 2.0
 - **[DevToolsFX](https://github.com/mkpaz/devtoolsfx)** — MIT
+- **[Spring AI](https://github.com/spring-projects/spring-ai)**, which serves Pholio's MCP server — Apache License 2.0
+- **[MCP Java SDK](https://github.com/modelcontextprotocol/java-sdk)** — MIT
+- **[ACP Java SDK](https://github.com/agentclientprotocol/java-sdk)**, which talks to an AI agent — Apache License 2.0
+- **[Google Antigravity](https://antigravity.google)**'s agent, downloaded on request, not shipped with Pholio — Google's own terms ([antigravity.google/terms](https://antigravity.google/terms))
+- **[Node.js](https://nodejs.org)**, downloaded on request to run Codex's agent, not shipped with Pholio — MIT License
+- **[Simple Icons](https://simpleicons.org)**, the logos of the AI agents — CC0 1.0; Claude, OpenAI and Mistral AI are trademarks of their owners
 - **[H2 Database](https://h2database.com)** — MPL 2.0 / EPL 1.0
 - **[Flyway](https://github.com/flyway/flyway)** — Apache License 2.0
 - **[Jackson](https://github.com/FasterXML/jackson)** — Apache License 2.0
