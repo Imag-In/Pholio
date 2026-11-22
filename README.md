@@ -37,7 +37,7 @@ The installers are not signed yet, so your system may warn you the first time yo
   Or, from the Terminal, lift the download quarantine once after installing — this only affects Pholio:
 
   ```bash
-  xattr -dr com.apple.quarantine /Applications/Pholio.app
+  sudo xattr -dr com.apple.quarantine /Applications/Pholio.app
   ```
 
 - **Windows** — on the "Windows protected your PC" screen, click *More info*, then *Run anyway*.
