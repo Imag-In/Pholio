@@ -39,6 +39,12 @@ min_os=$(otool -l "${LAUNCHER}" | awk '/LC_BUILD_VERSION/ { found = 1 } found &&
 log "Declaring macOS SDK ${MACOS_SDK} in the launcher (minimum macOS ${min_os})"
 xcrun vtool -set-build-version macos "${min_os}" "${MACOS_SDK}" -replace -output "${LAUNCHER}.patched" "${LAUNCHER}"
 mv "${LAUNCHER}.patched" "${LAUNCHER}"
+# macOS asks the user before an application hears the microphone — the chat's dictation (Imag-In/pholio-roadmap#381) —
+# and refuses it, or kills the application, when its Info.plist gives no reason to show. Before the signature: it
+# covers the Info.plist.
+plutil -replace NSMicrophoneUsageDescription \
+    -string "Pholio listens only while you dictate a prompt to its chat. What you say is turned into text on this computer and never sent." \
+    "${APP_BUNDLE}/Contents/Info.plist"
 # vtool invalidates the launcher's signature, and an arm64 executable without a valid one is killed on launch.
 codesign --force --sign - "${APP_BUNDLE}"
 
