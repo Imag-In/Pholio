@@ -69,3 +69,39 @@ Face and animal recognition run entirely on your computer, with these models, us
 ## Holiday dates
 
 - The days of Chinese New Year, Diwali, Hanukkah and Holi come from the tables of **[python-holidays](https://github.com/vacanza/holidays)** — MIT
+
+## Slideshow music
+
+The music Pholio offers for slideshows, downloaded only when asked: recordings by **[Musopen](https://musopen.org)**, the European Archive and the bands of the United States Air Force and Marine Corps (works of the US government), from [Wikimedia Commons](https://commons.wikimedia.org), in the public domain.
+
+- Erik Satie, *Gymnopédie No. 1* — Robin Alciatore — public domain.
+- Frédéric Chopin, *Nocturne Op. 9 No. 2* — CC0.
+- Johann Sebastian Bach, *Goldberg Variations, Aria* — CC0.
+- Antonio Vivaldi, *The Four Seasons, Spring, I. Allegro* — The Modena Chamber Orchestra — Public Domain Mark.
+
+For Christmas:
+
+- Pyotr Ilyich Tchaikovsky, *The Nutcracker, Waltz of the Flowers* — United States Air Force Band — public domain.
+- Mykola Leontovych, *Carol of the Bells* — United States Air Force Band of the Rockies — public domain.
+- Franz Xaver Gruber, *Silent Night* — United States Air Force Band, Singing Sergeants — public domain.
+- Pietro Yon, *Gesù Bambino* — United States Air Force Band of Mid-America — public domain.
+
+For the snow and the mountains:
+
+- Antonio Vivaldi, *The Four Seasons, Winter, I. Allegro non molto* and *II. Largo* — The Modena Chamber Orchestra — Public Domain Mark.
+- Edvard Grieg, *Peer Gynt, Morning Mood* — Musopen Symphony Orchestra — public domain.
+
+For the sea:
+
+- Felix Mendelssohn, *The Hebrides Overture* — Musopen Symphony Orchestra — Public Domain Mark.
+- Claude Debussy, *La Mer, I. From dawn to noon on the sea* — United States Air Force Band — public domain.
+
+For a wedding:
+
+- Felix Mendelssohn, *A Midsummer Night's Dream, Wedding March* — European Archive — public domain.
+- Johann Pachelbel, *Canon in D* — United States Air Force Band, Strolling Strings — public domain.
+
+For a celebration:
+
+- Johann Strauss II, *The Blue Danube* and *Wiener Blut* — CC0.
+- Wolfgang Amadeus Mozart, *Eine kleine Nachtmusik, I. Allegro* and *IV. Rondo* — public domain.
