@@ -89,6 +89,8 @@ keep_natives() {
     [ -d "${work}/${root}/${keep}" ] || { echo "${name} has no ${root}/${keep}" >&2; exit 1; }
     while IFS= read -r file; do
         case "${file}" in
+            # Debugging symbols (macOS): 70 MB nothing loads.
+            *.dSYM/*) rm -f "${file}" ;;
             "${work}/${root}/${keep}/"*) ;;
             *) rm -f "${file}" ;;
         esac
