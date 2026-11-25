@@ -29,6 +29,7 @@ Libraries shipped inside Pholio, with their license.
 - **[Caffeine](https://github.com/ben-manes/caffeine)** — Apache License 2.0
 - **[metadata-extractor](https://github.com/drewnoakes/metadata-extractor)** — Apache License 2.0
 - **[Apache Commons Imaging](https://commons.apache.org/proper/commons-imaging/)** and **[Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)** — Apache License 2.0
+- **[Apache PDFBox](https://pdfbox.apache.org)** — Apache License 2.0
 - **[Adobe XMPCore](https://github.com/adobe/XMP-Toolkit-SDK)** — BSD 3-Clause
 - **[TwelveMonkeys ImageIO](https://github.com/haraldk/TwelveMonkeys)** — BSD 3-Clause
 - **[libjpeg-turbo](https://libjpeg-turbo.org)** — BSD 3-Clause, IJG License and zlib License
